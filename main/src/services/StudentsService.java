@@ -1,25 +1,34 @@
 package services;
 
 import models.Student;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class StudentsService {
-    public static Map<String,Integer> getStudentsMap(List<Student> listOfStudents) {
-        Map<String,Integer> studentsMap = new HashMap<>();
+    static Comparator<Map.Entry<Student, Integer>> valueComparator = (student1, student2) -> student2.getValue() - student1.getValue();
+    public static Map<Student,Integer> getStudentsMap(List<Student> listOfStudents) {
+        Map<Student,Integer> studentsMap = new HashMap<>();
 
         for (int i = 0; i < listOfStudents.size(); i++) {
-            String key = listOfStudents.get(i).getFirstName() + " " + listOfStudents.get(i).getLastName();
-            if (studentsMap.containsKey(key)) {
-                int oldValue = studentsMap.get(key);
-                studentsMap.replace(key,++oldValue);
+            Student student = listOfStudents.get(i);
+            if (studentsMap.containsKey(student)) {
+                int oldValue = studentsMap.get(student);
+                studentsMap.replace(student,++oldValue);
             }
             else {
-                studentsMap.put(key,1);
+                studentsMap.put(student,1);
             }
         }
-        return studentsMap;
+
+        Set<Map.Entry<Student, Integer>> entries = studentsMap.entrySet();
+        ArrayList<Map.Entry<Student, Integer>> listOfEntries = new ArrayList<>(entries);
+        Collections.sort(listOfEntries,valueComparator);
+        LinkedHashMap<Student,Integer> linkedMapOfEntries = new LinkedHashMap<Student,Integer>(listOfEntries.size());
+
+        for (int i = 0; i < listOfEntries.size(); i++) {
+            linkedMapOfEntries.put(listOfEntries.get(i).getKey(),listOfEntries.get(i).getValue());
+        }
+        return linkedMapOfEntries;
     }
     public static void getNumberOfStudentsInEachFaculty(List<Student> listOfStudents) {
         Map<String,Integer> faculties = new HashMap<>();
@@ -34,6 +43,7 @@ public class StudentsService {
                 faculties.put(key,1);
             }
         }
+
 
         for (Map.Entry<String,Integer> pair:faculties.entrySet()) {
             System.out.println("number of students in faculty " + pair.getKey() + " is " + pair.getValue());

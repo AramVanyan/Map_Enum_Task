@@ -9,23 +9,6 @@ public class Student {
     private String phoneNumber;
     private String faculty;
 
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public String getFaculty() {
         return faculty;
     }
@@ -40,13 +23,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", faculty='" + faculty + '\'' +
-                '}';
+        return firstName + " " + lastName;
     }
 
     @Override
@@ -54,15 +31,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return age == student.age &&
-                Objects.equals(firstName, student.firstName) &&
-                Objects.equals(lastName, student.lastName) &&
-                Objects.equals(phoneNumber, student.phoneNumber) &&
-                Objects.equals(faculty, student.faculty);
+        return Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, phoneNumber, faculty, age);
+        return Objects.hash(firstName, lastName);
     }
 }

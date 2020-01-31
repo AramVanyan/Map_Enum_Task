@@ -36,11 +36,19 @@ public class MonthsService {
         if (month == null || day > 31 || day < 1) {
             return false;
         }
-        for (int i = 0; i < month.getDaysOfPublicHolidays().length; i++) {
+        for (int i = 0; i < month.getNumberOfHolidaysInMonth(); i++) {
             if (month.getDaysOfPublicHolidays()[i] == day) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static void printNumberOfHolidaysInMonth(Months month) {
+        if (month == null) {
+            return;
+        }
+        System.out.println(month.getNumberOfHolidaysInMonth());
+        System.out.println();
     }
 }
