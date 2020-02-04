@@ -1,28 +1,28 @@
 package services;
 
-import models.Months;
+import models.Month;
 
 import java.util.Arrays;
 
-public class MonthsService {
+public class MonthService {
 
-    public static void printHolidaysOfMonth(Months month) {
+    public static void printHolidaysOfMonth(Month month) {
         if (month == null) {
-            return;
+            throw new IllegalArgumentException();
         }
         System.out.println("holidays in " + month.name() + " are " + Arrays.toString(month.getDaysOfPublicHolidays()));
         System.out.println();
     }
 
-    public static void printNumberOfDaysInMonth(Months month) {
+    public static void printNumberOfDaysInMonth(Month month) {
         if (month == null) {
-            return;
+            throw new IllegalArgumentException();
         }
         System.out.println(month.getNumberOfDays());
         System.out.println();
     }
 
-    public static void printAllMonths(Months[] months) {
+    public static void printAllMonths(Month[] months) {
         if (months == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class MonthsService {
         System.out.println();
     }
 
-    public static boolean checkWhetherDayIsHoliday(int day,Months month) {
+    public static boolean checkWhetherDayIsHoliday(int day, Month month) {
         if (month == null || day > 31 || day < 1) {
             return false;
         }
@@ -44,9 +44,9 @@ public class MonthsService {
         return false;
     }
 
-    public static void printNumberOfHolidaysInMonth(Months month) {
+    public static void printNumberOfHolidaysInMonth(Month month) {
         if (month == null) {
-            return;
+            throw new IllegalArgumentException();
         }
         System.out.println(month.getNumberOfHolidaysInMonth());
         System.out.println();

@@ -2,7 +2,7 @@ package models;
 
 import java.util.Arrays;
 
-public enum Months {
+public enum Month {
     JANUARY(31,5,2,3,10,15,31),
     FEBRUARY(28,6,21,2,12,15,30,5),
     MARCH(31,7,2,11,10,19,29,6,7),
@@ -21,7 +21,7 @@ public enum Months {
     private int numberOfHolidaysInMonth;
     private int[] daysOfPublicHolidays;
 
-    Months(int numberOfDays, int numberOfHolidaysInMonth, int... daysOfPublicHolidays) {
+    Month(int numberOfDays, int numberOfHolidaysInMonth, int... daysOfPublicHolidays) {
         this.numberOfDays = numberOfDays;
         this.numberOfHolidaysInMonth = numberOfHolidaysInMonth;
         this.daysOfPublicHolidays = daysOfPublicHolidays;

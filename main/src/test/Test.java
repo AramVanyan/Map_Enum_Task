@@ -1,8 +1,8 @@
 package test;
 
-import models.Months;
+import models.Month;
 import models.Student;
-import services.MonthsService;
+import services.MonthService;
 import services.StudentsService;
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,14 +29,15 @@ public class Test {
             System.out.println(mapElement.getKey() + " " + mapElement.getValue());
         }
         System.out.println();
-        StudentsService.getNumberOfStudentsInEachFaculty(arrayListOfStudents);
+        Map<String, Integer> studentNumberInFaculty = StudentsService.getStudentNumberInFaculty(arrayListOfStudents);
+        StudentsService.showStudentNumberInFaculty(studentNumberInFaculty);
         System.out.println();
 
         //test of MonthsService
-        MonthsService.printAllMonths(Months.values());
-        MonthsService.printHolidaysOfMonth(Months.APRIL);
-        MonthsService.printNumberOfDaysInMonth(Months.MARCH);
-        MonthsService.printNumberOfHolidaysInMonth(Months.JANUARY);
-        System.out.println(MonthsService.checkWhetherDayIsHoliday(1, Months.APRIL));
+        MonthService.printAllMonths(Month.values());
+        MonthService.printHolidaysOfMonth(Month.APRIL);
+        MonthService.printNumberOfDaysInMonth(Month.MARCH);
+        MonthService.printNumberOfHolidaysInMonth(Month.JANUARY);
+        System.out.println(MonthService.checkWhetherDayIsHoliday(1, Month.APRIL));
     }
 }
