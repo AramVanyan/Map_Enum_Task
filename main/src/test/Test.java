@@ -5,7 +5,6 @@ import models.Student;
 import services.MonthService;
 import services.StudentsService;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Map;
 
 public class Test {
@@ -25,12 +24,12 @@ public class Test {
             }
 
         };
-        Map<Student, Integer> studentsMap = StudentsService.getStudentsMap(arrayListOfStudents);
+        Map<Student, Integer> studentsMap = StudentsService.getStudents(arrayListOfStudents);
         for (Map.Entry mapElement : studentsMap.entrySet()) {
             System.out.println(mapElement.getKey() + " " + mapElement.getValue());
         }
         System.out.println();
-        Map<String, Integer> studentNumberInFaculty = StudentsService.getStudentNumberInFaculty(arrayListOfStudents);
+        Map<String, Integer> studentNumberInFaculty = StudentsService.getStudentsPerFaculty(arrayListOfStudents);
         StudentsService.showStudentNumberInFaculty(studentNumberInFaculty);
         System.out.println();
 

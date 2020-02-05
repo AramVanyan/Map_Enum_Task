@@ -8,7 +8,7 @@ public class StudentsService {
     static Comparator<Map.Entry<Student, Integer>> valueComparator = (student1, student2) -> {
         return student2.getValue() - student1.getValue();
     };
-    public static Map<Student,Integer> getStudentsMap(List<Student> listOfStudents) {
+    public static Map<Student,Integer> getStudents(List<Student> listOfStudents) {
         Map<Student,Integer> studentsMap = new HashMap<>();
 
         for (int i = 0; i < listOfStudents.size(); i++) {
@@ -32,20 +32,20 @@ public class StudentsService {
         }
         return linkedMapOfEntries;
     }
-    public static Map<String,Integer> getStudentNumberInFaculty(List<Student> listOfStudents) {
-        Map<String,Integer> countOfStudentsInFaculties = new HashMap<>();
+    public static Map<String,Integer> getStudentsPerFaculty(List<Student> listOfStudents) {
+        Map<String,Integer> studentsPerFaculty = new HashMap<>();
 
         for (int i = 0; i < listOfStudents.size(); i++) {
             String key = listOfStudents.get(i).getFaculty();
-            if (countOfStudentsInFaculties.containsKey(key)) {
-                int oldValue = countOfStudentsInFaculties.get(key);
-                countOfStudentsInFaculties.replace(key,++oldValue);
+            if (studentsPerFaculty.containsKey(key)) {
+                int oldValue = studentsPerFaculty.get(key);
+                studentsPerFaculty.replace(key,++oldValue);
             }
             else {
-                countOfStudentsInFaculties.put(key,1);
+                studentsPerFaculty.put(key,1);
             }
         }
-        return countOfStudentsInFaculties;
+        return studentsPerFaculty;
     }
     public static void showStudentNumberInFaculty(Map<String,Integer> mapOfFaculties) {
         for (Map.Entry<String,Integer> pair:mapOfFaculties.entrySet()) {
